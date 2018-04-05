@@ -1,4 +1,3 @@
 ---
 - src: geerlingguy.clamav
 - src: tartansandal.awslogs-setup
-- src: konstruktoid.hardening

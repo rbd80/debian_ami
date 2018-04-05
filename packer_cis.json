@@ -60,7 +60,8 @@
         "role_paths": [
             "ansible/roles/common",
             "ansible/roles/lynis",
-            "ansible/roles/ossec"
+            "ansible/roles/ossec",
+            "ansible/roles/k8s-hard-os"
         ],
         "playbook_dir": "ansible",
         "galaxy_file": "ansible/requirements.yaml"

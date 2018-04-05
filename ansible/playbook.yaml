@@ -11,13 +11,15 @@
     clamav_freshclam_daemon_state: started
     clamav_freshclam_daemon_enabled: yes
     awslogs_setup_region: us-east-1
+    # SSH admin local
+    sshd_admin_net: [207.244.0.0/24, 207.244.1.0/24]
 
   roles:
     - common
     - ossec
     - geerlingguy.clamav
     - tartansandal.awslogs-setup
-    - konstruktoid.hardening
+    - k8s-hard-os
     - lynis
 
   post_tasks:

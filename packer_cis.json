@@ -57,7 +57,7 @@
     },
     {
       "type":"file",
-      "source":"provisioning",
+      "source":"ansible",
       "destination":"/tmp"
     },
     {

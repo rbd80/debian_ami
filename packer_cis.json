@@ -61,7 +61,7 @@
       "destination":"/tmp"
     },
     {
-      "type": "ansible",
+      "type": "ansible-local",
       "extra_arguments": [
         "-vvv"
       ],

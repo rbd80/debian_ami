@@ -54,7 +54,12 @@
           "export ANSIBLE_LOCAL_TEMP=$HOME/.ansible/tmp",
           "export ANSIBLE_REMOTE_TEMP=$HOME/.ansible/tmp"
         ]
-    }, 
+    },
+    {
+      "type":"file",
+      "source":"provisioning",
+      "destination":"/tmp"
+    },
     {
       "type": "ansible-local",
       "extra_arguments": [

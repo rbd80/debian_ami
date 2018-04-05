@@ -50,8 +50,7 @@
           "sudo apt-get update -y",
           "sudo apt-get install ansible -y",
           "echo $HOME",
-          "remote_tmp = $HOME/.ansible/tmp",
-          "local_tmp = $HOME/.ansible/tmp"
+          "export HOME=/root"
         ]
     }, 
     {

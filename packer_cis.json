@@ -55,8 +55,6 @@
       "type": "ansible-local",
       "extra_arguments": [
         "-vvv",
-        "ANSIBLE_LOCAL_TEMP=$HOME/.ansible/tmp",
-        "ANSIBLE_REMOTE_TEMP=$HOME/.ansible/tmp",
         "HOME=/root"
       ],
         "playbook_file": "ansible/playbook.yaml",

@@ -51,7 +51,8 @@
           "sudo apt-get install ansible -y",
           "echo $HOME",
           "export HOME=/root",
-          "export local_tmp=/tmp/foo_directory"
+          "export ANSIBLE_LOCAL_TEMP=$HOME/.ansible/tmp",
+          "export ANSIBLE_REMOTE_TEMP=$HOME/.ansible/tmp"
         ]
     }, 
     {

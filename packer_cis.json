@@ -1,0 +1,72 @@
+{
+  "variables": {
+    "vpc": "{{env `BUILD_VPC_ID`}}",
+    "subnet": "{{env `BUILD_SUBNET_ID`}}",
+    "aws_region": "{{env `AWS_REGION`}}",
+    "ami_name": "Prod-CIS-Latest-AMZN-{{isotime \"02-Jan-06 03_04_05\"}}"
+  },
+  "builders": [{
+    "ami_name": "HARDEN-DEBIAN-{{isotime \"02-Jan-06\"}}",
+    "ami_description": "Harden Debian 1.8 Stretch",
+    "associate_public_ip_address": "true",
+    "instance_type": "t2.micro",
+    "name": "Harden Debian",
+    "region": "{{user `aws_region`}}",
+    "force_deregister": "true",
+    "force_delete_snapshot": "true",
+    "type": "amazon-ebs",
+    "ssh_username": "admin",
+    "encrypt_boot": true,
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "architecture": "x86_64",
+        "name": "*k8s-1.8-debian-stretch-*",
+        "block-device-mapping.volume-type": "gp2",
+        "root-device-type": "ebs"
+      },
+      "owners": ["383156758163"],
+      "most_recent": true
+    },
+    "tags": {
+      "Name": "{{user `ami_name`}}"
+    },
+    "run_tags": {
+      "Name": "{{user `ami_name`}}"
+    },
+    "run_volume_tags": {
+      "Name": "{{user `ami_name`}}"
+    },
+    "snapshot_tags": {
+      "Name": "{{user `ami_name`}}"
+    }
+  }],
+  "provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+          "echo deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main | sudo tee -a /etc/apt/sources.list",
+          "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367",
+          "sudo apt-get update -y",
+          "sudo apt-get install ansible -y"
+        ]
+    }, 
+    {
+        "type": "ansible-local",
+        "playbook_file": "ansible/playbook.yaml",
+        "role_paths": [
+            "ansible/roles/common",
+            "ansible/roles/lynis",
+            "ansible/roles/ossec"
+        ],
+        "playbook_dir": "ansible",
+        "galaxy_file": "ansible/requirements.yaml"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "rm .ssh/authorized_keys ; sudo rm /root/.ssh/authorized_keys"
+      ]
+    }
+  ]
+}

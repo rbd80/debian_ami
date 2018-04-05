@@ -1,0 +1,30 @@
+---
+- name: '2.1 Create Separate Partition for /tmp (Scored)'
+  become: 'yes'
+  become_method: sudo
+  template:
+    src: etc/systemd/tmp.mount.j2
+    dest: /lib/systemd/system/tmp.mount
+    backup: 'yes'
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - systemd
+    - tmp
+    - security
+    - section2
+    - section2.1
+
+  - name: '2.5 Create Separate Partition for /var (Scored)'
+    command: grep '\s/var\s' /etc/fstab
+    when: partitioning == True
+    register: var_partition
+    failed_when: var_partition.rc == 1
+    changed_when: False
+    ignore_errors: True
+    tags:
+      - section2
+      - section2.5
+
+...

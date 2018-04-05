@@ -1,0 +1,17 @@
+---
+
+- name: " Storage, Control STRG-1846: Disable drivers like firewire storage when not used"
+  shell: >
+    # Add comments to file
+    echo "# Block firewire modules" >> /etc/modprobe.d/blacklist-firewire.conf
+    echo "# firewire-core: full firewire stack" >> /etc/modprobe.d/blacklist-firewire.conf
+    echo "# firewire-ohci: host controller (e.g. for storage)" >> /etc/modprobe.d/blacklist-firewire.conf
+    echo "# firewire-sbp2: SCSI over firewire" >> /etc/modprobe.d/blacklist-firewire.conf
+
+    # Use this to block firewire completely (sound,network,storage)
+    echo "install firewire_core /bin/false" >> /etc/modprobe.d/blacklist-firewire.conf
+    # Disable host control driver (usually PCI based)
+    echo "install firewire_ohci /bin/false" >> /etc/modprobe.d/blacklist-firewire.conf
+    # Block SCSI over IEEE1394
+    echo "install firewire_sbp2 /bin/false" >> /etc/modprobe.d/blacklist-firewire.conf
+  become: yes

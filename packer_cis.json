@@ -52,7 +52,8 @@
         ]
     }, 
     {
-        "type": "ansible-local",
+      "type": "ansible-local",
+      "ansible_env_vars": [ "ANSIBLE_LOCAL_TEMP=$HOME/.ansible/tmp", "ANSIBLE_REMOTE_TEMP=$HOME/.ansible/tmp" ],
       "extra_arguments": [
         "-vvv"
       ],

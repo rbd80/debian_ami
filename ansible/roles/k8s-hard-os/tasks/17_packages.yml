@@ -11,36 +11,23 @@
 # UBTU-16-010010
 # UBTU-16-010050
 
-#- name: debian family package installation
-#  become: 'yes'
-#  become_method: sudo
-#  apt:
-#    name: "{{ item }}"
-#    state: latest
-#    install_recommends: 'no'
-#  environment:
-#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-#  with_items:
-#    - "{{ packages_debian }}"
-#  when: ansible_os_family == "Debian"
-#  tags:
-#    - apt
-#    - packages
-#    - security
-
-- name: 'Install latest debian ignoring "install-recommends"'
+- name: debian family package installation
+  become: 'yes'
+  become_method: sudo
   apt:
     name: "{{ item }}"
     state: latest
-    install_recommends: no
-#  environment:
-#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    install_recommends: 'no'
+  environment:
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   with_items:
     - "{{ packages_debian }}"
+  when: ansible_os_family == "Debian"
   tags:
     - apt
     - packages
     - security
+
 
 - name: debian family package removal
   become: 'yes'

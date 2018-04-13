@@ -1,6 +1,0 @@
----
-
-- name: Restart OSSEC service
-  service:
-    name: "{{ ossecservice }}"
-    state: restarted

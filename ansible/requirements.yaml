@@ -2,3 +2,4 @@
 - src: rbd80.clamav
 - src: tartansandal.awslogs-setup
 - src: rbd80.HardDebianKubernetes
+- src: rbd80.ossec

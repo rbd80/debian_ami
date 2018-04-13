@@ -21,10 +21,10 @@
   roles:
     - common
     #- ossec
-    #- geerlingguy.clamav
     #- tartansandal.awslogs-setup
     #- k8s-hard-o
     - rbd80.clamav
+    - rbd80.ossec
     - rbd80.HardDebianKubernetes
 
   post_tasks:

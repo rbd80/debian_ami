@@ -1,0 +1,23 @@
+---
+  - name: 'Remove serveral debian family packages'
+    become: 'yes'
+    become_method: sudo
+    apt:
+      name: "{{ item }}"
+      state: absent
+      purge: 'yes'
+    with_items:
+      - "{{ packages_blacklist }}"
+    environment:
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    when: ansible_os_family == "Debian"
+    tags:
+      - apt
+      - section2
+      - section2.18
+      - section2.19
+      - section2.20
+      - section2.21
+      - section2.22
+      - section2.23
+      - section2.24

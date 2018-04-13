@@ -32,8 +32,11 @@ The index is currently at 85%
 │   └── pipeline.yaml
 ├── packer_cis.json                         <-- Packer template for Pipeline
 ```
-## What is logged and monitored
+## What is logged
 [Details on the security config](ansible/README.md)
+
+
+## What is monitored
 
 ## Cloudformation template
 Cloudformation will create the following resources as part of the AMI Builder for Packer:
@@ -71,6 +74,11 @@ TODO:
 - Add more Invokes conditions, currently only a commit but add version updates (lambda function)
 
 https://s3-external-1.amazonaws.com/cf-templates-h7iqxoi3arkm-us-east-1/20180693MP-WorkingAMIPacker72xwrtvyjcj
+
+
+
+
+
 
 ### Reference
 - [Amazon Blog](https://aws.amazon.com/blogs/devops/how-to-create-an-ami-builder-with-aws-codebuild-and-hashicorp-packer/)

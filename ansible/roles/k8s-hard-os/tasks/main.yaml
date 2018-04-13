@@ -1,0 +1,14 @@
+---
+- include_tasks: check_requirements.yaml
+- include_tasks: section_01.yaml
+  tags: section01
+- include_tasks: section_02.yaml
+  tags: section02
+- include_tasks: section_03.yaml
+  tags: section03
+- include_tasks: section_04.yaml
+  tags: section04
+- include_tasks: section_05.yaml
+  tags: section05
+- include_tasks: section_06.yaml
+  tags: section06

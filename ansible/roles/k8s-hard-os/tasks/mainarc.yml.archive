@@ -1,0 +1,37 @@
+---
+- include_tasks: 02_firewall.yml
+- include_tasks: 03_disablenet.yml
+- include_tasks: 04_disablefs.yml
+- include_tasks: 05_systemdconf.yml
+- include_tasks: 06_journalconf.yml
+- include_tasks: 07_timesyncd.yml
+- include_tasks: 08_fstab.yml
+- include_tasks: 09_prelink.yml
+- include_tasks: 10_pkgupdate.yml
+- include_tasks: 11_hosts.yml
+- include_tasks: 12_logindefs.yml
+- include_tasks: 13_sysctl.yml
+- include_tasks: 14_limits.yml
+- include_tasks: 15_adduser.yml
+- include_tasks: 16_rootaccess.yml
+- include_tasks: 17_packages.yml
+#- include_tasks: 18_sshdconfig.yml
+#- include_tasks: 19_password.yml
+#- include_tasks: 20_cron.yml
+#- include_tasks: 21_ctrlaltdel.yml
+#- include_tasks: 22_auditd.yml
+#- include_tasks: 23_disablemod.yml
+#- include_tasks: 24_aide.yml
+#- include_tasks: 26_users.yml
+#- include_tasks: 27_suid.yml
+#- include_tasks: 28_umask.yml
+#- include_tasks: 30_path.yml
+#- include_tasks: 31_logindconf.yml
+#- include_tasks: 32_resolvedconf.yml
+#- include_tasks: 33_rkhunter.yml
+#- include_tasks: 34_issue.yml
+#- include_tasks: 35_apport.yml
+#- include_tasks: 36_lockroot.yml
+#- include_tasks: 37_mount.yml
+#- include_tasks: 38_motdnews.yml
+...

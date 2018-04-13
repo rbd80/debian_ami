@@ -1,0 +1,108 @@
+---
+redhat_rpm_key: [567E347AD0044ADE55BA8A5F199E2F91FD431D51, 47DB287789B21722B6D95DDE5326810137017186]
+ntp: 0.ubuntu.pool.ntp.org 1.ubuntu.pool.ntp.org
+fallback_ntp: 2.ubuntu.pool.ntp.org 3.ubuntu.pool.ntp.org
+ssh_allow_groups: sudo
+dns: 127.0.0.1
+fallback_dns: 185.121.177.177 130.255.73.90
+dnssec: allow-downgrade
+suid_sgid_blacklist: [/bin/ntfs-3g, /usr/bin/at, /bin/fusermount, /bin/mount, /bin/ping, /bin/ping6, /bin/su, /bin/umount, /sbin/mount.nfs, /usr/bin/bsd-write, /usr/bin/chage, /usr/bin/chfn, /usr/bin/chsh, /usr/bin/mlocate, /usr/bin/mtr, /usr/bin/newgrp, /usr/bin/pkexec, /usr/bin/traceroute6.iputils, /usr/bin/wall, /usr/bin/write, /usr/sbin/pppd]
+random_ack_limit: "{{ 1000000 | random(start=1000) }}"
+packages_debian: [acct, aide-common, apparmor-profiles, apparmor-utils, auditd, debsums, haveged, libpam-cracklib, libpam-tmpdir, openssh-server, rkhunter, rsyslog, vlock]
+packages_blacklist: [avahi-*, popularity-contest, rsh*, talk*, telnet*, tftp*, yp-tools, ypbind, xinetd]
+net_modules_blacklist: [dccp, sctp, rds, tipc]
+# for CIS Level 2 on Filesystem, just removed packages
+fs_modules_blacklist: [cramfs, freevxfs, hfs, hfsplus, jffs2, squashfs, udf, vfat]
+misc_modules_blacklist: [bluetooth, bnep, btusb, firewire-core, n_hdlc, net-pf-31, soundcore, thunderbolt, usb-midi, usb-storage]
+limit_nofile_soft: 100
+limit_nofile_hard: 150
+limit_nproc_soft: 100
+limit_nproc_hard: 150
+grub_cmdline: audit=1
+
+# Section 01
+# The execution is faster without packages upgrade.
+apt_upgrade: True
+# Only update apt cache if older than this value (in seconds)
+apt_cache_valid_time: 3600
+# Section 02
+partitioning: False
+# True if run/shm is write-protected.
+run_shm_read_only: False
+# Section 03
+
+# Default root password: root
+root_password: f3@Vy*%S\t:9sJ)Jguh47Vd(
+
+# Grub Bootloader PBKDF2 Password (use grub-mkpasswd-pbkdf2 to generate)
+root_password_grub: grub.pbkdf2.sha512.10000.8A60CF664E6135882F8E7DE3C24C1FBF07273990AE3F6420B6E27DABEA0CDA554207F1D410FE26B80915D038BCF65D9A7DE507AAB731EA8DC7BA7DD260CD1E14.9D58EF7489AF49A5D5242DF247938750F088F81CC5D8F40F016805249B9D7032DBE72069D1DBE29EC0412EE99F891CAF712E1899187D85E669266DEE8F57F1A8
+
+# Section 04
+
+# Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
+use_apparmor: True
+
+# Modify the kernel behavior to disallow dump of suid binaries.
+restrict_core_dumps: True
+
+# Set this flag to randomize virtual memory region placement.
+enable_aslr: True
+
+
+# Section 06
+
+# We focus a server installation, but we may be accept some desktops.
+remove_xserver: True
+
+# Default ntp server for when none-already exists.
+ntp_server: 0.fr.pool.ntp.org
+
+
+# Section 07
+
+# Set this flag if the kernel has TCP syncookies support.
+enable_tcp_syncookies: True
+
+# A Docker host will need this set to 1 in order to route container traffic.
+# (https://docs.docker.com/engine/userguide/networking/default_network/container-communication)
+net_ipv4_ip_forward: 0
+
+# Enable the activate_ufw variable with True to install and enable service on boot.
+# NOTE: If not properly configured it may result in incorrect services behavior.
+activate_ufw: True
+
+# Disable all ipv6 interfaces. Suggested if the protocol is not used.
+disable_ipv6: True
+
+
+# Section 08
+
+# Set auditd logs file size in /var/log/auditd
+max_log_file_auditd: 200
+
+# Set this flag if you have a remote rsyslog server to send logs.
+# WARNING: Update the IP address or rsyslog will hit 100% of the CPU usage.
+set_rsyslog_remote: False
+
+# Override to change the group and permissions of log files in 8.2.4 (eg, to 'adm' and 'g-wx,o-rwx' respectively)
+rsyslog_log_files_group: root
+rsyslog_log_files_permissions: og-rwx
+
+# Set rsyslog's logs remote server address to send logs.
+# WARNING: Update the IP address without localhost address or rsyslog will hit 100% of the CPU usage
+remote_logs_host_address: X.X.X.X
+
+# Set this flag to use AIDE. Disable when using another file integrity checker like OSSEC.
+use_aide: True
+# Section 09
+# This variable will install and setup the pam_cracklib module, enforcing strong passwords settings.
+use_pam_cracklib: True
+# Section 13
+
+# This variable defines if accounts without password have to be locked
+lock_shadow_accounts: False
+
+# The modification of user homes may lock users and set the system in an errored state. Set to false if one of the user is using / as home.
+modify_user_homes: True
+
+...

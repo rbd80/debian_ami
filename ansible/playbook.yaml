@@ -5,25 +5,35 @@
   become: yes           # majority of CIS tasks require root
   vars:
     # CIS Controls whitepaper:  http://bit.ly/2mGAmUc
-    # Cloudwatch Logs Role configuration
+    # ClamAV Logs Role configuration
     clamav_daemon_state: started
     clamav_daemon_enabled: yes
     clamav_freshclam_daemon_state: started
     clamav_freshclam_daemon_enabled: yes
-    awslogs_setup_region: us-east-1
+
     # SSH admin local
     sshd_admin_net: [207.244.0.0/24, 207.244.1.0/24]
 
+    # Cloudwatch Logs Role configuration
+    awslogs_setup_region: us-east-1
+    awslogs_loglevel: info
+
   roles:
     - common
-    - ossec
-    - geerlingguy.clamav
-    - tartansandal.awslogs-setup
-    - k8s-hard-os
-    - lynis
+    #- ossec
+    #- geerlingguy.clamav
+    #- tartansandal.awslogs-setup
+    #- k8s-hard-o
+    - rbd80.clamav
+    - rbd80.HardDebianKubernetes
 
   post_tasks:
-    - name: "configure awslogs for system log files"
-      template:
-        src: roles/common/templates/awslogs.conf.j2
-        dest: /var/awslogs/etc/awslogs.conf
+    #- name: "configure awslogs for system log files"
+    #  template:
+    #    src: tmp/roles/common/templates/logs/awslogs.conf.j2
+    #    dest: /var/awslogs/etc/awslogs.conf
+
+    #- name: "configure awslogs for system log files"
+    #  template:
+    #    src: tmp/roles/common/templates/logs/awslogs.logging.conf.j2
+    #    dest: /var/awslogs/etc/awslogs.logging

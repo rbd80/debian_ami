@@ -1,0 +1,9 @@
+---
+  - include_tasks: section_02_level1.yaml
+    tags:
+      - section02
+      - level1
+  - include_tasks: section_02_level2.yaml
+    tags:
+      - section02
+      - level2

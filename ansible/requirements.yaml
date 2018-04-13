@@ -1,3 +1,4 @@
 ---
-- src: geerlingguy.clamav
+- src: rbd80.clamav
 - src: tartansandal.awslogs-setup
+- src: rbd80.HardDebianKubernetes

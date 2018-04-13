@@ -1,9 +1,12 @@
 ---
 # https://github.com/ansible/ansible/issues/22171
+#- name: restart auditd
+#  become: 'yes'
+#  become_method: sudo
+#  command: service auditd restart
+
 - name: restart auditd
-  become: 'yes'
-  become_method: sudo
-  command: service auditd restart
+  service: name=auditd state=restarted
 
 - name: generate auditd
   become: 'yes'
@@ -52,12 +55,17 @@
     stated: stopped
     enabled: 'no'
 
+#- name: restart sshd
+#  become: 'yes'
+#3  become_method: sudo
+#  service:
+#    name: sshd
+#    state: restarted
+# https://github.com/ansible/ansible-modules-core/issues/1533
 - name: restart sshd
-  become: 'yes'
-  become_method: sudo
-  service:
-    name: sshd
-    state: restarted
+  shell: sleep 3; systemctl restart sshd
+  async: 1
+  poll: 0
 
 - name: apt-get autoremove
   become: 'yes'

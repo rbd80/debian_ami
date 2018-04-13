@@ -3,3 +3,4 @@
 - src: tartansandal.awslogs-setup
 - src: rbd80.HardDebianKubernetes
 - src: rbd80.ossec
+- src: rbd80.lynis

@@ -21,7 +21,7 @@
   roles:
     - common
     - tartansandal.awslogs-setup
-    #- k8s-hard-o
+    #- k8s-hard-os
     - rbd80.clamav
     - rbd80.ossec
     - rbd80.HardDebianKubernetes

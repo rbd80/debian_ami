@@ -59,8 +59,6 @@
         "clean_staging_directory": true,
         "role_paths": [
             "ansible/roles/common",
-            "ansible/roles/lynis",
-            "ansible/roles/ossec",
             "ansible/roles/k8s-hard-os"
         ],
         "playbook_dir": "ansible",
